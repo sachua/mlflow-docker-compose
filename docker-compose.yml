@@ -1,0 +1,79 @@
+version: '3.3'
+
+services:
+    minio:
+        restart: always
+        image: bitnami/minio:2020.4.4
+        container_name: mlflow_s3
+        expose:
+            - "9000"
+        networks: 
+            - storage
+        environment:
+            - MINIO_ACCESS_KEY=${AWS_ACCESS_KEY_ID}
+            - MINIO_SECRET_KEY=${AWS_SECRET_ACCESS_KEY}
+            - MINIO_DEFAULT_BUCKETS=mlflow
+        volumes:
+            - minio_data:/data
+
+
+    db:
+        restart: always
+        image: mysql/mysql-server:5.7.28
+        container_name: mlflow_db
+        expose:
+            - "3306"
+        networks:
+            - backend
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - dbdata:/var/lib/mysql
+
+    web:
+        restart: always
+        build: ./mlflow
+        image: mlflow_server
+        container_name: mlflow_server
+        expose:
+            - "5000"
+        networks:
+            - frontend
+            - backend
+            - storage
+        environment:
+            - MLFLOW_S3_ENDPOINT_URL=minio:9000
+            - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+        command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE} --default-artifact-root s3://mlflow/ --host 0.0.0.0        
+
+
+    nginx:
+        restart: always
+        build: ./nginx
+        image: mlflow_nginx
+        container_name: mlflow_nginx
+        ports:
+            - "80:80"
+            - "9000:9000"
+        networks:
+            - frontend
+            - storage
+        depends_on:
+            - web
+            - minio
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+    storage:
+        driver: bridge
+
+volumes:
+    dbdata:
+    minio_data:
