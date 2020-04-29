@@ -39,7 +39,7 @@ The MLflow tracking server is composed of 4 docker containers:
 2. Install MLflow with extra dependencies, inclusing scikit-learn
 
     ```bash
-    via pip install mlflow[extras]
+    pip install mlflow[extras]
     ```
     
 3. Set environmental variables
