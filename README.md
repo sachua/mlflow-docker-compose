@@ -54,6 +54,7 @@ The MLflow tracking server is composed of 4 docker containers:
     mkdir ~/.aws
     touch ~/.aws/credentials
     cat > ~/.aws/credentials
+    
     [default]
     aws_access_key_id=minio
     aws_secret_access_key=minio123
