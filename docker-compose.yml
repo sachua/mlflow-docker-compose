@@ -26,6 +26,7 @@ services:
             - .env
         entrypoint: >
             /bin/sh -c "
+            while ! nc -z minio 9000; do echo 'Wait minio to startup...' && sleep 0.1; done; sleep 5 &&
             /usr/bin/mc config host add minio http://minio:9000 ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY};
             /usr/bin/mc rm -r --force minio/mlflow;
             /usr/bin/mc mb minio/mlflow;
