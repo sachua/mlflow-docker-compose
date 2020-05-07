@@ -51,13 +51,11 @@ The MLflow tracking server is composed of 4 docker containers:
 4. Set MinIO credentials
     
     ```bash
-    mkdir ~/.aws
-    touch ~/.aws/credentials
-    cat > ~/.aws/credentials
-    
+    cat > /.aws/credentials <<EOF
     [default]
     aws_access_key_id=minio
     aws_secret_access_key=minio123
+    EOF
     ```
 
 5. Train a sample MLflow model
