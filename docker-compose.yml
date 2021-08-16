@@ -7,6 +7,7 @@ services:
         container_name: mlflow_s3
         expose:
             - "9000"
+        command: server /data
         networks: 
             - storage
         environment:
