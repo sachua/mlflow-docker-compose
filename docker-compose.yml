@@ -18,7 +18,7 @@ services:
             - minio_data:/data
 
     mc:
-        image: minio/mc
+        image: minio/minio:RELEASE.2021-10-10T16-53-30Z
         depends_on:
             - minio
         container_name: mc
