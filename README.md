@@ -16,6 +16,7 @@ MinIO S3 is used as the artifact store and MySQL server is used as the backend s
 3. Build and run the containers with `docker-compose`
 
     ```bash
+    chmod +x wait-for-it.sh
     docker-compose up -d --build
     ```
 
