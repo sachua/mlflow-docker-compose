@@ -35,7 +35,7 @@ The MLflow tracking server is composed of 4 docker containers:
 
 1. Install [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
-2. Install MLflow with extra dependencies, inclusing scikit-learn
+2. Install MLflow with extra dependencies, including scikit-learn
 
     ```bash
     pip install mlflow[extras]
