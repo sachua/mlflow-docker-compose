@@ -3,7 +3,7 @@ version: '3.7'
 services:
     minio:
         restart: always
-        image: minio/minio:RELEASE.2021-10-13T00-23-17Z
+        image: minio/minio:RELEASE.2022-04-09T15-09-52Z
         container_name: mlflow_s3
         ports:
             - "9000:9000"
@@ -16,7 +16,7 @@ services:
             - minio_data:/data
 
     mc:
-        image: minio/mc:RELEASE.2021-10-07T04-19-58Z
+        image: minio/mc:RELEASE.2022-04-07T21-43-27Z
         depends_on:
             - minio
         container_name: mc
@@ -24,8 +24,8 @@ services:
             - .env
         entrypoint: >
             /bin/sh -c "
-            /tmp/wait-for-it.sh minio:9000;
-            /usr/bin/mc alias set minio http://minio:9000 ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY};
+            /tmp/wait-for-it.sh minio:9000 &&
+            /usr/bin/mc alias set minio http://minio:9000 ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} &&
             /usr/bin/mc mb minio/mlflow;
             exit 0;
             "
@@ -34,7 +34,7 @@ services:
 
     db:
         restart: always
-        image: mysql/mysql-server:5.7.28
+        image: mysql/mysql-server:8.0.28-1.2.7-server
         container_name: mlflow_db
         ports:
             - "3306:3306"
@@ -51,6 +51,9 @@ services:
         build: ./mlflow
         image: mlflow_server
         container_name: mlflow_server
+        depends_on:
+            - mc
+            - db
         ports:
             - "5000:5000"
         environment:

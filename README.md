@@ -5,7 +5,7 @@ MinIO S3 is used as the artifact store and MySQL server is used as the backend s
 
 ## How to run
 
-1. Clone(download) this repository
+1. Clone (download) this repository
 
     ```bash
     git clone https://github.com/sachua/mlflow-docker-compose.git
@@ -16,7 +16,6 @@ MinIO S3 is used as the artifact store and MySQL server is used as the backend s
 3. Build and run the containers with `docker-compose`
 
     ```bash
-    chmod +x wait-for-it.sh
     docker-compose up -d --build
     ```
 
@@ -36,7 +35,7 @@ The MLflow tracking server is composed of 4 docker containers:
 
 1. Install [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
-2. Install MLflow with extra dependencies, inclusing scikit-learn
+2. Install MLflow with extra dependencies, including scikit-learn
 
     ```bash
     pip install mlflow[extras]
