@@ -3,7 +3,7 @@ version: '3.7'
 services:
     minio:
         restart: always
-        image: minio/minio:RELEASE.2022-04-09T15-09-52Z
+        image: minio/minio@sha256:beb5fd646b298e0e732c186215926d5ebf8cb0d2ff573bba17b4c4b22ec90ade
         container_name: mlflow_s3
         ports:
             - "9000:9000"
@@ -16,7 +16,7 @@ services:
             - minio_data:/data
 
     mc:
-        image: minio/mc:RELEASE.2022-04-07T21-43-27Z
+        image: minio/mc@sha256:c734ae7fd20606d4b2c0cf9ef25f22e5f4185406363b9260e7c16f6fe527cfd7
         depends_on:
             - minio
         container_name: mc
@@ -34,7 +34,7 @@ services:
 
     db:
         restart: always
-        image: mysql/mysql-server:8.0.28-1.2.7-server
+        image: mysql/mysql-server@sha256:02b97ea35a7057064d04392ade1aef1f0f018b051881986f4910f5088ae7e688
         container_name: mlflow_db
         ports:
             - "3306:3306"
