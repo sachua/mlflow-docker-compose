@@ -9,6 +9,6 @@
       "matchPackagePrefixes": ["gcr.io/bitnami-containers/", "bitnami/"],
       "matchDatasources": ["docker"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(:?-(?<compatibility>.*-r)(?<build>\\d+))?$"
-    },
+    }
   ]
 }
