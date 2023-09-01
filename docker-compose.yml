@@ -3,7 +3,7 @@ version: '3.7'
 services:
     minio:
         restart: always
-        image: minio/minio@sha256:96eac0d8dcb58e9b25e6718d02fc05965db41c783fa40e54d147b93d51dec540
+        image: minio/minio@sha256:6d6cf693fd70ca6e15709fa44d39b44f98fc5b58795697486a95ac1cc2ad9880
         container_name: mlflow_s3
         ports:
             - "9000:9000"
