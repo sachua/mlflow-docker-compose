@@ -1,4 +1,4 @@
 cryptography==41.0.5
-boto3==1.28.39
+boto3==1.29.3
 mlflow==2.8.1
 pymysql==1.1.0
