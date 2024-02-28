@@ -38,7 +38,7 @@ The MLflow tracking server is composed of 4 docker containers:
 2. Install MLflow with extra dependencies, including scikit-learn
 
     ```bash
-    pip install mlflow[extras]
+    pip install mlflow boto3
     ```
 
 3. Set environmental variables
@@ -63,9 +63,10 @@ The MLflow tracking server is composed of 4 docker containers:
     mlflow run https://github.com/sachua/mlflow-example.git -P alpha=0.42
     ```
 
- 6. Serve the model (replace {MODEL_ID} with your model's ID)
+ 6. Serve the model (replace ${MODEL_ID} with your model's ID)
     ```bash
-    mlflow models serve -m runs:/{MODEL_ID}/model -p 1234 --env-manager conda
+    export MODEL_ID=0ced24069348417fbbcb2cd41a7d2f07 # Replace this with your model's ID
+    mlflow models serve -m runs:/${MODEL_ID}/model -p 1234 --env-manager conda
     ```
 
  7. You can check the input with this command
