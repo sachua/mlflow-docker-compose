@@ -63,9 +63,9 @@ The MLflow tracking server is composed of 4 docker containers:
     mlflow run https://github.com/sachua/mlflow-example.git -P alpha=0.42
     ```
 
- 6. Serve the model (replace with your model's actual path)
+ 6. Serve the model (replace {MODEL_ID} with your model's ID)
     ```bash
-    mlflow models serve -m S3://mlflow/0/98bdf6ec158145908af39f86156c347f/artifacts/model -p 1234
+    mlflow models serve -m runs:/{MODEL_ID}/model -p 1234 --env-manager conda
     ```
 
  7. You can check the input with this command
