@@ -25,7 +25,7 @@ MinIO S3 is used as the artifact store and MySQL server is used as the backend s
 
 ## Containerization
 
-The MLflow tracking server is composed of 4 docker containers:
+The MLflow tracking server is composed of 3 docker containers:
 
 * MLflow server
 * MinIO object storage server
