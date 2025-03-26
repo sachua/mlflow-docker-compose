@@ -1,0 +1,4 @@
+boto3==1.37.20
+mlflow==2.21.1
+python-dotenv
+scikit-learn
