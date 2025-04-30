@@ -34,7 +34,7 @@ services:
 
     db:
         restart: always
-        image: mysql/mysql-server@sha256:5b40d96b11333570143d98d3a74100fefadb9abb17b27a95dbc9ad33544ec142
+        image: mysql/mysql-server@sha256:d6c8301b7834c5b9c2b733b10b7e630f441af7bc917c74dba379f24eeeb6a313
         container_name: mlflow_db
         ports:
             - "3306:3306"
