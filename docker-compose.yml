@@ -16,7 +16,7 @@ services:
             - minio_data:/data
 
     mc:
-        image: minio/mc@sha256:68d8c80f43908b02daa285e55547131870a1d36b3ffe272c26d7d8f4d52d1e5c
+        image: minio/mc@sha256:aead63c77f9db9107f1696fb08ecb0faeda23729cde94b0f663edf4fe09728e3
         depends_on:
             - minio
         container_name: mc
